@@ -1,5 +1,11 @@
 #!/bin/bash
+#############################################################
+## About the Author : MOHD ABDUL JAMEEL
+## Date : 24 Apr 2025
+## About : This script list the number of users existing in the Repository -- ** It doesnt list the users who have OWNER level Access ##
+#############################################################
 
+helper()
 # GitHub API URL
 API_URL="https://api.github.com"
 
@@ -34,6 +40,13 @@ function list_users_with_read_access {
         echo "Users with read access to ${REPO_OWNER}/${REPO_NAME}:"
         echo "$collaborators"
     fi
+}
+
+function helper {
+    expected_cmd_args=2
+    if [$# -ne $expected_cmd_args]; then
+    echo "Please Execute the Script with the required Args "
+    echo "Retry or contact Jameel"
 }
 
 # Main script
