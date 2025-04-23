@@ -2,20 +2,20 @@
 #############################################################
 ## About the Author : MOHD ABDUL JAMEEL
 ## Date : 24 Apr 2025
-## About : This script list the number of users existing in the Repository -- ** It doesnt list the users who have OWNER level Access ##
+## About : This script lists the number of users existing in the Repository 
+## ** It doesn't list the users who have OWNER level Access ##
 #############################################################
 
-helper()
 # GitHub API URL
 API_URL="https://api.github.com"
 
 # GitHub username and personal access token
-USERNAME=$username
-TOKEN=$token
+USERNAME="your_github_username"
+TOKEN="your_github_token"
 
 # User and Repository information
-REPO_OWNER=$1
-REPO_NAME=$2
+REPO_OWNER="$1"
+REPO_NAME="$2"
 
 # Function to make a GET request to the GitHub API
 function github_api_get {
@@ -42,14 +42,18 @@ function list_users_with_read_access {
     fi
 }
 
+# Helper function to check arguments
 function helper {
     expected_cmd_args=2
-    if [$# -ne $expected_cmd_args]; then
-    echo "Please Execute the Script with the required Args "
-    echo "Retry or contact Jameel"
+    if [ "$#" -ne "$expected_cmd_args" ]; then
+        echo "Error: Please execute the script with the required arguments."
+        echo "Usage: $0 <REPO_OWNER> <REPO_NAME>"
+        echo "Retry or contact Jameel"
+        exit 1
+    fi
 }
 
-# Main script
-
+# Main script execution
+helper "$@"
 echo "Listing users with read access to ${REPO_OWNER}/${REPO_NAME}..."
 list_users_with_read_access
